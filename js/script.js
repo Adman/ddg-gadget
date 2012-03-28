@@ -1,6 +1,6 @@
 function query(q, callback){
   var req = new XMLHttpRequest();
-  req.open('GET', 'https://chrome.duckduckgo.com?q=' + encodeURIComponent(q) + '&format=json', true);
+  req.open('GET', 'http://api.duckduckgo.com?q=' + encodeURIComponent(q) + '&format=json', true);
 
   req.onreadystatechange = function(data) {
       if (req.readyState != 4) { return; }
