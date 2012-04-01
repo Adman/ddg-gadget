@@ -21,7 +21,7 @@ window.onload = function(){
   document.getElementById("search_button").onclick = function(){
     var el = document.getElementById('search_wrapper');
     search(el.value);
-  }
+  };
 }
 
 function hideZeroClick()
