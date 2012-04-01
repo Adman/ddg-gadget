@@ -21,14 +21,15 @@ window.onload = function(){
   document.getElementById("search_button").onclick = function(){
     var el = document.getElementById('search_wrapper');
     search(el.value);
-  };
+  }
 }
 
 function hideZeroClick()
 {
     var ddg_result = document.getElementById("ddg_zeroclick");
     if (ddg_result !== null)
-        ddg_result.style.display = 'none';
+        //ddg_result.style.display = 'none';
+        ddg_result.innerHTML = "No zero click results found.";
 }
 
 function showZeroClick()
@@ -56,10 +57,10 @@ function createResultDiv()
 }
 
 function renderZeroClick(res, query)
-{
+{  
     // disable on images
-    //if (document.getElementById('isr_pps') !== null)
-    //    return;
+    if (document.getElementById('isr_pps') !== null)
+        return;
 
     if (res['AnswerType'] !== "") {
         displayAnswer(res['Answer']);
