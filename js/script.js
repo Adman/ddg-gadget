@@ -1,110 +1,43 @@
-function query(q, callback){
-  var req = new XMLHttpRequest();
-  req.open('GET', 'http://api.duckduckgo.com?q=' + encodeURIComponent(q) + '&format=json', true);
-
-  req.onreadystatechange = function(data) {
-      if (req.readyState != 4) { return; }
-      var res = JSON.parse(req.responseText);
-      callback(res);
-  }
-  req.send(null);
-}
-
-function search(q){   
-    query(q, function(response){
-        renderZeroClick(response, q);
-    });
-}
-
-
-window.onload = function(){
-  document.getElementById("search_button").onclick = function(){
-    var el = document.getElementById('search_wrapper');
-    search(el.value);
-  };
-}
 
 function hideZeroClick()
 {
     var ddg_result = document.getElementById("ddg_zeroclick");
-    if (ddg_result !== null)
+    if (ddg_result !== null){
         //ddg_result.style.display = 'none';
-        ddg_result.innerHTML = "No zero click results found.";
+        ddg_result.innerHTML = 'No zero click results found.';
+    }
 }
 
 function showZeroClick()
 {
     var ddg_result = document.getElementById("ddg_zeroclick");
-    if (ddg_result !== null)
+    if (ddg_result !== null){
         ddg_result.style.display = 'block';
-}
-
-function resultsLoaded()
-{
-    return document.getElementById("center_col") !== null;
+    }
 }
 
 
 function createResultDiv()
-{
+{  
     var result = document.getElementById("main");
     var ddg_result = document.getElementById("ddg_zeroclick");
+    showZeroClick();
     if (ddg_result === null) {
-        result.innerHTML = '<div id="ddg_zeroclick"></div>' + result.innerHTML;
+        result.innerHTML = '<div id="ddg_zeroclick"></div>';
         ddg_result = document.getElementById("ddg_zeroclick");
     }
     return ddg_result;
 }
-
-function renderZeroClick(res, query)
-{  
-    // disable on images
-    if (document.getElementById('isr_pps') !== null)
-        return;
-
-    if (res['AnswerType'] !== "") {
-        displayAnswer(res['Answer']);
-    } else if (res['Type'] == 'A' && res['Abstract'] !== "") {
-        displaySummary(res, query);
-    } else {
-        switch (res['Type']){
-            case 'E':
-                displayAnswer(res['Answer']);
-                break;
-
-            case 'A':
-                displayAnswer(res['Answer']);
-                break;
-
-            case 'C':
-                displayCategory(res, query);
-                break;
-
-            case 'D':
-                displayDisambiguation(res, query);
-                break;
-
-            default:
-                hideZeroClick();
-                break;
-                    
-        }
-    }
-}
-
 
 function displayAnswer(answer)
 {
     if (answer === '') {
         return;
     }
-    if (resultsLoaded()) {
-        var ddg_result = createResultDiv();
-        ddg_result.className = "ddg_answer";
-        ddg_result.innerHTML = answer;
-    } else {
-        setTimeout('displayAnswer("'+answer+'");', 200);
-    }
+    
+    var ddg_result = createResultDiv();
+    ddg_result.className = "ddg_answer";
+    ddg_result.innerHTML = answer;
 }
 
 function displaySummary(res, query) {
@@ -188,16 +121,9 @@ function displaySummary(res, query) {
               '</div><div class="clear"></div>';
 
 
-    if(resultsLoaded()) {
-        var ddg_result = createResultDiv();
-        ddg_result.className = '';
-        ddg_result.innerHTML = result;
-    } else {
-        setTimeout(function(){
-            displaySummary(res, query);
-        }, 200);
-    }
-
+    var ddg_result = createResultDiv();
+    ddg_result.className = '';
+    ddg_result.innerHTML = result;
 }
 
 function displayDisambiguation(res, query){
@@ -292,16 +218,9 @@ function displayDisambiguation(res, query){
               '</div><div class="clear"></div>';
               
 
-    if(resultsLoaded()) {
-        var ddg_result = createResultDiv();
-        ddg_result.className = '';
-        ddg_result.innerHTML = result;
-    } else {
-        setTimeout(function(){
-            displayDisambiguation(res, query);
-        }, 200);
-    }
-
+    var ddg_result = createResultDiv();
+    ddg_result.className = '';
+    ddg_result.innerHTML = result;
 }
 
 function displayCategory(res, query){
@@ -364,17 +283,75 @@ function displayCategory(res, query){
                 
     
 
-    if(resultsLoaded()) {
-        var ddg_result = createResultDiv();
-        ddg_result.className = '';
-        ddg_result.innerHTML = result;
-    } else {
-        setTimeout(function(){
-            displayCategory(res, query);
-        }, 200);
-    }
+    var ddg_result = createResultDiv();
+    ddg_result.className = '';
+    ddg_result.innerHTML = result;
 
 }
 
+function renderZeroClick(res, query)
+{
+    // disable on images
+    if (document.getElementById('isr_pps') !== null)
+        return;
+
+    if (res['AnswerType'] !== "") {
+        displayAnswer(res['Answer']);
+    } else if (res['Type'] == 'A' && res['Abstract'] !== "") {
+        displaySummary(res, query);
+    } else {
+        switch (res['Type']){
+            case 'E':
+                displayAnswer(res['Answer']);
+                break;
+
+            case 'A':
+                displayAnswer(res['Answer']);
+                break;
+
+            case 'C':
+                displayCategory(res, query);
+                break;
+
+            case 'D':
+                displayDisambiguation(res, query);
+                break;
+
+            default:
+                hideZeroClick();
+                break;
+                    
+        }
+    }
+}
+
+function query(q, callback){
+  var req = new XMLHttpRequest();
+  req.open('GET', 'http://api.duckduckgo.com?q=' + encodeURIComponent(q) + '&format=json', true);
+
+  req.onreadystatechange = function(data) {
+      if (req.readyState != 4) { return; }
+      var res = JSON.parse(req.responseText);
+      callback(res);
+  }
+  req.send(null);
+}
+
+function search(q){   
+    query(q, function(response){
+        renderZeroClick(response, q);
+    });
+}
+
+
+window.onload = function(){
+  document.getElementById("search_button").onclick = function(){
+    var el = document.getElementById('search_wrapper');
+    if (el.value !== '')
+        search(el.value);
+    else
+        return false;
+  };
+}
 
 
