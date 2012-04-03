@@ -1,4 +1,14 @@
 
+function setHeight (ddg_result)
+{  
+  var result = document.getElementById("results");
+  with (document.body.style)
+	{
+		width = "500px";
+		height = result.style.height + 5;
+	}
+}
+
 function hideZeroClick()
 {
     var ddg_result = document.getElementById("ddg_zeroclick");
@@ -19,7 +29,7 @@ function showZeroClick()
 
 function createResultDiv()
 {  
-    var result = document.getElementById("main");
+    var result = document.getElementById("results");
     var ddg_result = document.getElementById("ddg_zeroclick");
     showZeroClick();
     if (ddg_result === null) {
@@ -38,6 +48,7 @@ function displayAnswer(answer)
     var ddg_result = createResultDiv();
     ddg_result.className = "ddg_answer";
     ddg_result.innerHTML = answer;
+    setHeight(ddg_result);
 }
 
 function displaySummary(res, query) {
@@ -124,6 +135,7 @@ function displaySummary(res, query) {
     var ddg_result = createResultDiv();
     ddg_result.className = '';
     ddg_result.innerHTML = result;
+    setHeight(ddg_result);
 }
 
 function displayDisambiguation(res, query){
@@ -221,6 +233,7 @@ function displayDisambiguation(res, query){
     var ddg_result = createResultDiv();
     ddg_result.className = '';
     ddg_result.innerHTML = result;
+    setHeight(ddg_result);
 }
 
 function displayCategory(res, query){
@@ -286,7 +299,7 @@ function displayCategory(res, query){
     var ddg_result = createResultDiv();
     ddg_result.className = '';
     ddg_result.innerHTML = result;
-
+    setHeight(ddg_result);
 }
 
 function renderZeroClick(res, query)
