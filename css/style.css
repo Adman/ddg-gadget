@@ -3,8 +3,7 @@ body
   font-family: "Helvetica Neue","Segoe UI",Arial,sans-serif;
   margin: 0;
   width: 500px;   /*560*/
-  height: 100px;  /*48*/ 
-  /*font-family: verdana;*/
+  height: expression(600 + "px");
   /*margin-top: -20px;*/
 }
 
@@ -126,8 +125,10 @@ body
 }
 
 .ddg_zeroclick_img {
-    max-width: 100px;
-    max-height: 100px;
+    /*max-width: 60px;
+    max-height: 60px;*/
+    width: expression(60 + "px");
+    height: expression(60 + "px");
 }
 
 #ddg_zeroclick_abstract {
@@ -193,13 +194,17 @@ body
     text-align: right;
     width: 48px;
     display: block;
+    width: expression(40 + "px");
+    height: expression(40 + "px");
 }
 
 .icon_disambig img {
-    max-height: 40px;
-    max-width: 40px;
+    /*max-height: 40px;
+    max-width: 40px;*/
+    width: expression(40 + "px");
+    height: expression(40 + "px");
     display: inline;
-
+    float: left;
     margin-top: 2px;
     padding-right: 4px;
 }
