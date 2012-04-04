@@ -1,6 +1,7 @@
 
 function setHeight (element)
 {  
+<<<<<<< HEAD
   
   System.Gadget.beginTransition()
 
@@ -17,6 +18,14 @@ function setHeight (element)
   }
    
   System.Gadget.endTransition()
+=======
+  var result = document.getElementById("results");
+  with (document.body.style)
+	{
+		width = "500px";
+		height = "300px";
+	}
+>>>>>>> 651f9d7979a22344d3a2ad4d6dbb4e8f7364d49e
 }
 
 function hideZeroClick()
