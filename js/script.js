@@ -1,24 +1,6 @@
 
 function setHeight (element)
 {  
-<<<<<<< HEAD
-  
-  System.Gadget.beginTransition()
-
-  //var result = document.getElementById("results");
-
-  if (document.body && document.body.offsetHeight) {
-     document.body.offsetHeight = element.style.height + 59;
-  }
-  if (document.compatMode=='CSS1Compat' && document.documentElement && document.documentElement.offsetHeight ) {
-     document.documentElement.offsetHeight = element.style.height + 59;
-  }
-  if (window.innerWidth && window.innerHeight) {
-   window.innerHeight = element.style.height + 59;
-  }
-   
-  System.Gadget.endTransition()
-=======
   var result = document.getElementById("results");
   var h = parseInt(result.style.height) + 10;
   with (document.body.style)
@@ -26,7 +8,6 @@ function setHeight (element)
 		width = "500px";
 		height = h + "px";
 	}
->>>>>>> 651f9d7979a22344d3a2ad4d6dbb4e8f7364d49e
 }
 
 function hideZeroClick()
