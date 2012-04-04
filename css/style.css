@@ -3,13 +3,9 @@ body
   font-family: "Helvetica Neue","Segoe UI",Arial,sans-serif;
   margin: 0;
   width: 500px;   /*560*/
-  height: 80px;  /*48*/ 
+  height: 600px;  /*48*/ 
   /*font-family: verdana;*/
   /*margin-top: -20px;*/
-}
-
-#main {
-  height: 59px;
 }
 
 #header {
@@ -203,6 +199,7 @@ body
     max-height: 40px;
     max-width: 40px;
     display: inline;
+
     margin-top: 2px;
     padding-right: 4px;
 }
