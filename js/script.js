@@ -5,7 +5,7 @@ function setHeight (ddg_result)
   with (document.body.style)
 	{
 		width = "500px";
-		height = result.style.height + 5;
+		height = "300px";
 	}
 }
 
