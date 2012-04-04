@@ -1,7 +1,7 @@
 
 function setHeight (element)
 {  
-<<<<<<< HEAD
+
   
   /*System.Gadget.beginTransition()
 
@@ -19,8 +19,7 @@ function setHeight (element)
    
   System.Gadget.endTransition()*/
 
-=======
->>>>>>> 0205c561d6a92027d56d2b75f1800a8b1a5b75d4
+
   var result = document.getElementById("results");
   var h = parseInt(result.style.height) + 10;
   with (document.body.style)
