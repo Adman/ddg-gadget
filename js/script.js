@@ -1,10 +1,6 @@
 
 function setHeight (element)
 {  
-<<<<<<< HEAD
-
-=======
->>>>>>> ab88dfdb674b909dc2cfe09e04f87d70ef90bbbc
   
   /*System.Gadget.beginTransition()
 
@@ -22,10 +18,6 @@ function setHeight (element)
    
   System.Gadget.endTransition()*/
 
-<<<<<<< HEAD
-
-=======
->>>>>>> ab88dfdb674b909dc2cfe09e04f87d70ef90bbbc
   var result = document.getElementById("results");
   var h = parseInt(result.style.height) + 10;
   document.getElementById("search_button").value += h;
