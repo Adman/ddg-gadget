@@ -1,12 +1,22 @@
 
-function setHeight (ddg_result)
+function setHeight (element)
 {  
-  var result = document.getElementById("results");
-  with (document.body.style)
-	{
-		width = "500px";
-		height = result.style.height + 5;
-	}
+  
+  System.Gadget.beginTransition()
+
+  //var result = document.getElementById("results");
+
+  if (document.body && document.body.offsetHeight) {
+     document.body.offsetHeight = element.style.height + 59;
+  }
+  if (document.compatMode=='CSS1Compat' && document.documentElement && document.documentElement.offsetHeight ) {
+     document.documentElement.offsetHeight = element.style.height + 59;
+  }
+  if (window.innerWidth && window.innerHeight) {
+   window.innerHeight = element.style.height + 59;
+  }
+   
+  System.Gadget.endTransition()
 }
 
 function hideZeroClick()
@@ -331,6 +341,7 @@ function renderZeroClick(res, query)
                 break;
 
             default:
+                createResultDiv();
                 hideZeroClick();
                 break;
                     
