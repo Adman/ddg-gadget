@@ -3,6 +3,7 @@ function setHeight (element)
 {  
   var result = document.getElementById("results");
   var h = parseInt(result.style.height) + 10;
+  document.getElementById("search_button").value += h;
   with (document.body.style)
 	{
 		width = "500px";
