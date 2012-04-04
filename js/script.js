@@ -2,10 +2,11 @@
 function setHeight (ddg_result)
 {  
   var result = document.getElementById("results");
+  var h = parseInt(result.style.height) + 10;
   with (document.body.style)
 	{
 		width = "500px";
-		height = "300px";
+		height = h + "px";
 	}
 }
 
