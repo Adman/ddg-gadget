@@ -1,6 +1,26 @@
 
 function setHeight (element)
 {  
+<<<<<<< HEAD
+  
+  /*System.Gadget.beginTransition()
+
+  //var result = document.getElementById("results");
+
+  if (document.body && document.body.offsetHeight) {
+     document.body.offsetHeight = element.style.height + 59;
+  }
+  if (document.compatMode=='CSS1Compat' && document.documentElement && document.documentElement.offsetHeight ) {
+     document.documentElement.offsetHeight = element.style.height + 59;
+  }
+  if (window.innerWidth && window.innerHeight) {
+   window.innerHeight = element.style.height + 59;
+  }
+   
+  System.Gadget.endTransition()*/
+
+=======
+>>>>>>> 0205c561d6a92027d56d2b75f1800a8b1a5b75d4
   var result = document.getElementById("results");
   var h = parseInt(result.style.height) + 10;
   document.getElementById("search_button").value += h;
