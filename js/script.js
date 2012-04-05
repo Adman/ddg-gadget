@@ -1,39 +1,29 @@
 
 function setHeight (element)
-{  
-  
-  /*System.Gadget.beginTransition()
-
-  //var result = document.getElementById("results");
-
-  if (document.body && document.body.offsetHeight) {
-     document.body.offsetHeight = element.style.height + 59;
-  }
-  if (document.compatMode=='CSS1Compat' && document.documentElement && document.documentElement.offsetHeight ) {
-     document.documentElement.offsetHeight = element.style.height + 59;
-  }
-  if (window.innerWidth && window.innerHeight) {
-   window.innerHeight = element.style.height + 59;
-  }
-   
-  System.Gadget.endTransition()*/
-
+{ 
   var result = document.getElementById("results");
-  var h = parseInt(result.style.height) + 10;
+  var h = parseInt(result.style.height);
   //document.getElementById("search_button").value += h;
   with (document.body.style)
 	{
-		width = "500px";
-		height = "500px";
+		//width = "500px";
+		height = h + "px";
 	}
+}
+
+function nothingFound()
+{
+    var ddg_result = document.getElementById("ddg_zeroclick");
+    if (ddg_result !== null){
+        ddg_result.innerHTML = 'No zero click results found.';
+    }
 }
 
 function hideZeroClick()
 {
     var ddg_result = document.getElementById("ddg_zeroclick");
     if (ddg_result !== null){
-        //ddg_result.style.display = 'none';
-        ddg_result.innerHTML = 'No zero click results found.';
+        ddg_result.style.display = 'none';
     }
 }
 
@@ -351,7 +341,7 @@ function renderZeroClick(res, query)
 
             default:
                 createResultDiv();
-                hideZeroClick();
+                nothingFound();
                 break;
                     
         }
