@@ -1,7 +1,7 @@
 
 function setHeight (element)
 { 
-  var result = document.getElementById("results");
+  var result = document.getElementById("ddg_zeroclick");
   var h = parseInt(result.style.height);
   //document.getElementById("search_button").value += h;
   with (document.body.style)
@@ -85,8 +85,9 @@ function displaySummary(res, query) {
                     match(/<a href=".*">.*<\/a>/);
         
         if (i < 2) {
-            var first = (i === 0)? ' class="first_category"': '';
-            first_category += '<div id="ddg_zeroclick_category"'+ first + '>' +
+            var first = (i === 0)? 'first_category': '';
+
+            first_category += '<div class="ddg_zeroclick_category '+ first +'" onmouseover="this.className+=\' ddg_selected\'" onmouseout="this.className=\'ddg_zeroclick_category '+ first +'\'" onclick="window.location.href=this.firstChild.href">' +
                                 link +
                               '</div>';
         } else {
@@ -129,13 +130,17 @@ function displaySummary(res, query) {
     
     var source_base_url = res['AbstractURL'].match(/http.?:\/\/(.*?\.)?(.*\..*?)\/.*/)[2];
 
-    result += '<div id="ddg_zeroclick_abstract">' + res['Abstract'] +
+    result += '<div id="ddg_zeroclick_abstract">' +
+                '<div onmouseover="this.className+=\' ddg_selected\'" onmouseout="this.className=\'\'" onclick="window.location.href=\''+ 
+                res['AbstractURL'] +'\'">' +
+
+                '<p>' + res['Abstract'] +
                 '<div id="ddg_zeroclick_official_links">' +
                     '<img src="http://duckduckgo.com/i/'+ source_base_url +'.ico" />' +
                     '<a href="' + res['AbstractURL'] + '"> More at ' +
                         res['AbstractSource'] +
                     '</a>' + official_site +
-                '</div>' +
+                '</div></div>' +
                  first_category +
                  hidden_categories +
               '</div><div class="clear"></div>';
@@ -177,14 +182,14 @@ function displayDisambiguation(res, query){
                             '<div class="icon_disambig">' +
                                 '<img src="' + topics[j]['Icon']['URL'] +'" />' +
                             '</div>' +
-                            '<div class="ddg_zeroclick_disambig">' +
+                            '<div class="ddg_zeroclick_disambig"  onmouseover="this.className+=\' disambig_selected\'" onmouseout="this.className=            \'ddg_zeroclick_disambig\'" onclick="window.location.href=this.firstChild.href">' +
                                 topics[j]['Result'] +
                             '</div>' +
                           '</div>';
             }
-            others += '<div class="disambig_more">' +
+            others += '<div class="disambig_more" onmouseover="this.className+=\' disambig_selected\'" onmouseout="this.className=\'disambig_more\'" onclick="this.firstChild.onclick();this.className=\'disambig_more\';this.onmouseover=function(){}">' +
                                 '<a href="javascript:;" onclick="' +
-                                    "this.parentElement.nextElementSibling.style.display='block';" +
+                                    "this.parentElement.nextElementSibling.style.display='block';this.onmouseover=null;" +
                                     "this.parentElement.innerHTML = '" + res['RelatedTopics'][i]['Name'] + "<hr>';" +
                                 '"> ' + res['RelatedTopics'][i]['Name'] + ' ('+ topics.length + ')</a>' +
                              '</div>' +
@@ -262,20 +267,20 @@ function displayCategory(res, query){
             break;
 
         if (i <= 2) {
-            categories += '<div class="wrapper">' +
-                            '<div id="ddg_zeroclick_img" class="icon_category">' +
+            categories += '<div class="wrapper" onmouseover="this.className+=\' ddg_selected\'" onmouseout="this.className=\'wrapper\'" onclick="window.location.href=this.lastChild.firstChild.href;">' +
+                            '<div class="icon_category">' +
                                 '<img src="' + res['RelatedTopics'][i]['Icon']['URL'] +'" />' +
                             '</div>' +
-                            '<div id="ddg_zeroclick_category_item">' +
+                            '<div class="ddg_zeroclick_category_item">' +
                                 res['RelatedTopics'][i]['Result'] +
                             '</div>' +
                           '</div>';
         } else {
-            hidden_categories += '<div class="wrapper">' +
+            hidden_categories += '<div class="wrapper" onmouseover="this.className+=\' ddg_selected\'" onmouseout="this.className=\'wrapper\'" onclick="window.location.href=this.lastChild.firstChild.href;">' +
                                 '<div id="ddg_zeroclick_img" class="icon_category">' +
                                     '<img src="' + res['RelatedTopics'][i]['Icon']['URL'] +'" />' +
                                 '</div>' +
-                                '<div id="ddg_zeroclick_category_item">' +
+                                '<div class="ddg_zeroclick_category_item">' +
                                     res['RelatedTopics'][i]['Result'] +
                                 '</div>' +
                               '</div>';
@@ -286,7 +291,7 @@ function displayCategory(res, query){
     }
     
     if (hidden_categories !== '') {
-        hidden_categories = '<div class="category_more">' +
+        hidden_categories = '<div class="category_more"  onmouseover="this.className+=\' ddg_selected\'" onmouseout="this.className=\'category_more\'" onclick="this.firstChild.onclick();this.className=\'category_more\';this.onmouseover=function(){}">' +
                                 '<a href="javascript:;" onclick="' +
                                     "this.parentElement.style.display='none';" +
                                     "this.parentElement.nextElementSibling.style.display='block'" +
@@ -368,12 +373,24 @@ function search(q){
 
 
 window.onload = function(){
+  //System.Gadget.Flyout.show = true;
   document.getElementById("search_button").onclick = function(){
     var el = document.getElementById('search_wrapper');
     if (el.value !== '')
         search(el.value);
     else
         return false;
+  };
+  document.getElementById("search_wrapper").onkeyup = function(){
+    var key = event.keyCode;
+    var el = document.getElementById('search_wrapper');
+    if (key == 13){
+      if (el.value !== ""){
+        search(el.value);
+      }else
+        return false;
+    }else 
+      return false;
   };
 }
 

@@ -132,8 +132,13 @@ body
 }
 
 #ddg_zeroclick_abstract {
-    margin: 5px 7px 5px 15px;
+    margin: 5px 7px 5px 10px;
     word-wrap: break-word;
+}
+
+#ddg_zeroclick_abstract > div{
+  border: 1px solid #fafafa;
+  padding-left: 2px;
 }
 
 #ddg_zeroclick_abstract a{
@@ -170,11 +175,12 @@ body
     text-decoration: underline;
 }
 
-#ddg_zeroclick_category{
-    background: url(https://duckduckgo.com/assets/icon_article.v101.png) 4px 4px no-repeat #F9F9F9 !important;
-    margin-top: -2px;
-    line-height: 1.4;
-    padding: 4px 0px 4px 24px !important;
+.ddg_zeroclick_category{
+    background-image: url(https://duckduckgo.com/assets/icon_ellipsis.v101.png);
+    background-repeat: no-repeat;
+    margin-left: -2px !important;
+    padding: 1px 0px 1px 36px !important;
+    border: 1px solid #fafafa;
 }
 
 .ddg_zeroclick_disambig {
@@ -196,6 +202,14 @@ body
     display: block;
     width: expression(40 + "px");
     height: expression(40 + "px");
+}
+
+.ddg_selected{
+    background-color: #efefef !important;
+    border-radius: 2px;
+    border: 1px solid #c2c2c2;
+    border: 1px solid #c2c2c2 !important;
+    cursor: pointer;
 }
 
 .icon_disambig img {
@@ -220,14 +234,14 @@ body
     max-width: 50px;
 }
 
-#ddg_zeroclick_category_item {
+.ddg_zeroclick_category_item {
     line-height: 1.4;
     padding: 4px;
     min-height: 30px;
     margin-left: 62px;
 }
 
-#ddg_zeroclick_category_item a {
+.ddg_zeroclick_category_item a {
     font-size: 1.2em;
 }
 
@@ -238,7 +252,7 @@ body
 .disambig_more {
     margin-left: 48px !important;
     padding: 4px;
-    clear: left
+    clear: left;
 }
 
 .disambig_more hr {
@@ -273,6 +287,8 @@ body
 .wrapper {
     clear: left;
     padding-bottom: 3px;
+    width: 530px;
+    border: 1px solid #fafafa;
 }
 
 .ddg_more {
