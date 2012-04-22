@@ -2,7 +2,7 @@
 function setHeight (element)
 { 
   var result = document.getElementById("ddg_zeroclick");
-  var h = parseInt(result.style.height);
+  var h = parseInt(element.style.height);
   //document.getElementById("search_button").value += h;
   with (document.body.style)
 	{
@@ -11,12 +11,19 @@ function setHeight (element)
 	}
 }
 
-function nothingFound()
+function nothingFound(query)
 {
     var ddg_result = document.getElementById("ddg_zeroclick");
     if (ddg_result !== null){
-        ddg_result.innerHTML = 'No zero click results found.';
+        ddg_result.innerHTML = '<div id="nothing_found">' + 
+                                "No zero click results found." + '</div>' + 
+                                '<div id="see_results">' +  
+                                '<a class="ddg_more" href="https://duckduckgo.com/?q='+
+                                    encodeURIComponent(query)
+                                +'"> See DuckDuckGo results </a>' + '</div>';
+        
     }
+    setHeight(ddg_result)
 }
 
 function hideZeroClick()
@@ -135,14 +142,14 @@ function displaySummary(res, query) {
                 res['AbstractURL'] +'\'">' +
 
                 '<p>' + res['Abstract'] +
-                '<div id="ddg_zeroclick_official_links">' +
+                /*'<div id="ddg_zeroclick_official_links">' +
                     '<img src="http://duckduckgo.com/i/'+ source_base_url +'.ico" />' +
                     '<a href="' + res['AbstractURL'] + '"> More at ' +
                         res['AbstractSource'] +
                     '</a>' + official_site +
                 '</div></div>' +
                  first_category +
-                 hidden_categories +
+                 hidden_categories +*/
               '</div><div class="clear"></div>';
 
 
@@ -239,8 +246,8 @@ function displayDisambiguation(res, query){
 
     result += '<div id="ddg_zeroclick_abstract">' +
                   disambigs +
-                  hidden_disambigs +
-                  others +
+                  /*hidden_disambigs +
+                  others +*/
               '</div><div class="clear"></div>';
               
 
@@ -304,8 +311,8 @@ function displayCategory(res, query){
     }
 
     result += '<div id="ddg_zeroclick_abstract">' +
-                    categories +
-                    hidden_categories +
+                    /*categories +*/
+                    /*hidden_categories +*/
                 '</div>';
                 
     
@@ -346,7 +353,7 @@ function renderZeroClick(res, query)
 
             default:
                 createResultDiv();
-                nothingFound();
+                nothingFound(query);
                 break;
                     
         }

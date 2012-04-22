@@ -2,8 +2,9 @@ body
 {
   font-family: "Helvetica Neue","Segoe UI",Arial,sans-serif;
   margin: 0;
-  width: 500px;   /*560*/
-  height: expression(600 + "px");
+  width: 400px;   /*560*/
+  height: expression( document.body.clientWidth < 59 ? "59px" : "auto" );
+  height: expression( document.body.clientWidth > 330 ? "330px" : "auto" );
   /*margin-top: -20px;*/
 }
 
@@ -28,9 +29,10 @@ body
   background: none repeat scroll 0 0 #F9F9F9;
   border: 1px solid #D2D2D2;
   border-radius: 6px 6px 6px 6px;
-  display: block;
+  display: inline;
   /*margin-bottom: 2px;*/
-  width: 495px;
+  width: 395px;
+  width: expression(395 + "px");
   z-index: 10;
 }
 
@@ -104,7 +106,7 @@ body
     background: url(https://duckduckgo.com/icon16.png) 4px 4px no-repeat #F9F9F9 !important;
     line-height: 1.4;
     padding: 4px 0px 4px 30px !important;
-    margin-bottom: 12px;
+    margin-bottom: 5px;
 }
 
 
@@ -127,8 +129,8 @@ body
 .ddg_zeroclick_img {
     /*max-width: 60px;
     max-height: 60px;*/
-    width: expression(40 + "px");
-    height: expression(40 + "px");
+    width: expression(30 + "px");
+    height: expression(30 + "px");
 }
 
 #ddg_zeroclick_abstract {
@@ -186,7 +188,8 @@ body
 .ddg_zeroclick_disambig {
     line-height: 1.4;
     padding: 4px;
-    margin-left: 48px;
+    margin-left: 38px;
+    width: expression(350 + "px");
 }
 
 #ddg_zeroclick_img {
@@ -200,15 +203,15 @@ body
     text-align: right;
     width: 48px;
     display: block;
-    width: expression(40 + "px");
-    height: expression(40 + "px");
+    width: expression(30 + "px");
+    height: expression(30 + "px");
 }
 
 .ddg_selected{
     background-color: #efefef !important;
     border-radius: 2px;
-    border: 1px solid #c2c2c2;
-    border: 1px solid #c2c2c2 !important;
+    /*border: 1px solid #c2c2c2;
+    border: 1px solid #c2c2c2 !important;*/
     cursor: pointer;
 }
 
@@ -296,6 +299,17 @@ body
     float: right;
     padding: 1px 20px 0 20px;
     height: 16px;
+}
+
+#nothing_found {
+  width: 200px;
+  float: left;
+  text-align: left;
+}
+
+#see_results {
+  float: right;
+  text-align: right;
 }
 
 
