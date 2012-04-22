@@ -114,8 +114,8 @@ function displaySummary(res, query) {
                                 '<div style="display:none">' +
                                     hidden_categories +
                                 '</div>';
+    
     }
-
 
     result += '<div id="ddg_zeroclick_header">' +
                 '<a href="' + res['AbstractURL'] + '">'+
@@ -126,14 +126,6 @@ function displaySummary(res, query) {
                 +'"> See DuckDuckGo results </a>' +
                 '</div>';
     
-    if (res['Image']) {
-        result += '<div id="ddg_zeroclick_image">' +
-                    '<a href="' + img_url +'">' +
-                        '<img class="ddg_zeroclick_img" src="' + res['Image'] +
-                        '" />' +
-                    '</a>' +
-                  '</div>';
-    }
     
     var source_base_url = res['AbstractURL'].match(/http.?:\/\/(.*?\.)?(.*\..*?)\/.*/)[2];
 
@@ -142,16 +134,24 @@ function displaySummary(res, query) {
                 res['AbstractURL'] +'\'">' +
 
                 '<p>' + res['Abstract'] +
-                /*'<div id="ddg_zeroclick_official_links">' +
+                '<div id="ddg_zeroclick_official_links">' +
                     '<img src="http://duckduckgo.com/i/'+ source_base_url +'.ico" />' +
                     '<a href="' + res['AbstractURL'] + '"> More at ' +
                         res['AbstractSource'] +
                     '</a>' + official_site +
-                '</div>*/'</div>' +
+                '</div></div>' +
                  /*first_category +
                  hidden_categories +*/
               '</div><div class="clear"></div>';
 
+    if (res['Image']) {
+        result += '<div id="ddg_zeroclick_image">' +
+                    '<a href="' + img_url +'">' +
+                        '<img class="ddg_zeroclick_img" src="' + res['Image'] +
+                        '" />' +
+                    '</a>' +
+                  '</div>';
+    }
 
     var ddg_result = createResultDiv();
     ddg_result.className = '';
@@ -284,7 +284,7 @@ function displayCategory(res, query){
                           '</div>';
         } else {
             hidden_categories += '<div class="wrapper" onmouseover="this.className+=\' ddg_selected\'" onmouseout="this.className=\'wrapper\'" onclick="window.location.href=this.lastChild.firstChild.href;">' +
-                                '<div id="ddg_zeroclick_img" class="icon_category">' +
+                                '<div class="ddg_zeroclick_img" class="icon_category">' +
                                     '<img src="' + res['RelatedTopics'][i]['Icon']['URL'] +'" />' +
                                 '</div>' +
                                 '<div class="ddg_zeroclick_category_item">' +
